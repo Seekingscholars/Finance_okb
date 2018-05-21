@@ -48,7 +48,7 @@
 ## 部署开发环境
 1. 下载 idea 社区版本
 2. 打开 idea ,导入[project] 本地导入. File -> Open
-4. 通过git导入：http://192.168.0.253:10011/lscj/cms.git [内网] 需要vpn链接
+4. 通过git导入/github down
 5. 需要等待 idea 自动下载jar包
 
 ## 演示地址

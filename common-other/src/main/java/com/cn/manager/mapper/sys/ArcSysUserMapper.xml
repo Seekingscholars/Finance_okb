@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- arc_sys_user表:系统用户表模块 -->
+<mapper namespace="com.cn.manager.mapper.sys.ArcSysUserMapper">
+    <!--返回Map-->
+    <resultMap id="BaseResultMap" type="com.cn.manager.pojo.sys.ArcSysUser">
+            <id column="id" property="id" jdbcType="BIGINT" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+            <result column="user_name" property="userName" jdbcType="VARCHAR" />
+            <result column="password" property="password" jdbcType="VARCHAR" />
+            <result column="job_num" property="jobNum" jdbcType="VARCHAR" />
+            <result column="company_id" property="companyId" jdbcType="VARCHAR" />
+            <result column="office_id" property="officeId" jdbcType="VARCHAR" />
+            <result column="office_over" property="officeOver" jdbcType="VARCHAR" />
+            <result column="position" property="position" jdbcType="INTEGER" />
+            <result column="email" property="email" jdbcType="VARCHAR" />
+            <result column="phone" property="phone" jdbcType="VARCHAR" />
+            <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+            <result column="status" property="status" jdbcType="INTEGER" />
+            <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+            <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+            <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+            <result column="add_user" property="addUser" jdbcType="VARCHAR" />
+            <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+            <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+            <result column="remark" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--基本的sql查询字段 公共引用...-->
+    <sql id="Base_Column_List">
+    id,name,user_name,password,job_num,company_id,office_id,office_over,position,email,phone,mobile,status,login_ip,login_time,add_time,add_user,update_time,update_user,remark 
+    </sql>
+
+    <!-- 基本的sql查询条件公共引用 -->
+    <sql id="searchBy">
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test=" id != null and id != '' ">
+                id  = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="name != null and name != '' ">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null and userName != '' ">
+                and user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null and password != '' ">
+                and password = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="jobNum != null and jobNum != '' ">
+                and job_num = #{jobNum,jdbcType=VARCHAR}
+            </if>
+            <if test="companyId != null and companyId != '' ">
+                and company_id = #{companyId,jdbcType=VARCHAR}
+            </if>
+            <if test="officeId != null and officeId != '' ">
+                and office_id = #{officeId,jdbcType=VARCHAR}
+            </if>
+            <if test="officeOver != null and officeOver != '' ">
+                and office_over = #{officeOver,jdbcType=VARCHAR}
+            </if>
+            <if test="position != null">
+                and position = #{position,jdbcType=INTEGER}
+            </if>
+            <if test="email != null and email != '' ">
+                and email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null and phone != '' ">
+                and phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="mobile != null and mobile != '' ">
+                and mobile = #{mobile,jdbcType=VARCHAR}
+            </if>
+            <if test="status != null">
+                and status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="loginIp != null and loginIp != '' ">
+                and login_ip = #{loginIp,jdbcType=VARCHAR}
+            </if>
+            <if test="loginTime != null">
+                and login_time = #{loginTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="addTime != null">
+                and add_time = #{addTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="addUser != null and addUser != '' ">
+                and add_user = #{addUser,jdbcType=VARCHAR}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="updateUser != null and updateUser != '' ">
+                and update_user = #{updateUser,jdbcType=VARCHAR}
+            </if>
+            <if test="remark != null and remark != '' ">
+                and remark = #{remark,jdbcType=VARCHAR}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 全量保存数据 -->
+    <insert id="save" parameterType="com.cn.manager.pojo.sys.ArcSysUser">
+        insert into arc_sys_user(name,user_name,password,job_num,company_id,office_id,office_over,position,email,phone,mobile,status,login_ip,login_time,add_time,add_user,update_time,update_user,remark)
+        values(#{name,jdbcType=VARCHAR},#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{jobNum,jdbcType=VARCHAR},#{companyId,jdbcType=VARCHAR},#{officeId,jdbcType=VARCHAR},#{officeOver,jdbcType=VARCHAR},#{position,jdbcType=INTEGER},#{email,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},#{status,jdbcType=INTEGER},#{loginIp,jdbcType=VARCHAR},#{loginTime,jdbcType=TIMESTAMP},#{addTime,jdbcType=TIMESTAMP},#{addUser,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},#{updateUser,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})
+    </insert>
+
+    <!-- 更新数据 -->
+    <update id="updateSelective"  parameterType="java.util.HashMap">
+        update arc_sys_user
+        <set>
+            <if test="name != null and name != '' ">name = #{name,jdbcType=VARCHAR},</if>
+            <if test="userName != null and userName != '' ">user_name = #{userName,jdbcType=VARCHAR},</if>
+            <if test="password != null and password != '' ">password = #{password,jdbcType=VARCHAR},</if>
+            <if test="jobNum != null and jobNum != '' ">job_num = #{jobNum,jdbcType=VARCHAR},</if>
+            <if test="companyId != null and companyId != '' ">company_id = #{companyId,jdbcType=VARCHAR},</if>
+            <if test="officeId != null and officeId != '' ">office_id = #{officeId,jdbcType=VARCHAR},</if>
+            <if test="officeOver != null and officeOver != '' ">office_over = #{officeOver,jdbcType=VARCHAR},</if>
+            <if test="position != null">position = #{position,jdbcType=INTEGER},</if>
+            <if test="email != null and email != '' ">email = #{email,jdbcType=VARCHAR},</if>
+            <if test="phone != null and phone != '' ">phone = #{phone,jdbcType=VARCHAR},</if>
+            <if test="mobile != null and mobile != '' ">mobile = #{mobile,jdbcType=VARCHAR},</if>
+            <if test="status != null">status = #{status,jdbcType=INTEGER},</if>
+            <if test="loginIp != null and loginIp != '' ">login_ip = #{loginIp,jdbcType=VARCHAR},</if>
+            <if test="loginTime != null">login_time = #{loginTime,jdbcType=TIMESTAMP},</if>
+            <if test="addTime != null">add_time = #{addTime,jdbcType=TIMESTAMP},</if>
+            <if test="addUser != null and addUser != '' ">add_user = #{addUser,jdbcType=VARCHAR},</if>
+            <if test="updateTime != null">update_time = #{updateTime,jdbcType=TIMESTAMP},</if>
+            <if test="updateUser != null and updateUser != '' ">update_user = #{updateUser,jdbcType=VARCHAR},</if>
+            <if test="remark != null and remark != '' ">remark = #{remark,jdbcType=VARCHAR}</if>
+        </set>
+        where id = #{id ,jdbcType=INTEGER}
+    </update>
+
+    <!-- 查询唯一 -->
+    <select id="findByPrimary" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List" />
+        from arc_sys_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!-- 模糊匹配 -->
+    <select id="findSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List" />
+        from arc_sys_user
+        <include refid="searchBy"/>
+    </select>
+
+    <!-- 一般应用分页 -->
+    <select id="listSelective" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+        select
+        <include refid="Base_Column_List" />
+        from arc_sys_user
+        <include refid="searchBy"/>
+    </select>
+
+</mapper>
